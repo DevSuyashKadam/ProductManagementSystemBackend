@@ -19,6 +19,8 @@ public class ProductController {
 @Autowired
 	private ProductService productService;
 	
+
+//suyash 
 	@PostMapping("/saveProduct")
 	public ResponseEntity<?>saveProduct(@RequestBody Product product){
 		
