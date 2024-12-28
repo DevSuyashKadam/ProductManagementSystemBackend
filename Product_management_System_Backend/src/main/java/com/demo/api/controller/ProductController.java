@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.api.exception.ProductNotFoundException;
 import com.demo.api.model.Product;
 import com.demo.api.service.ProductService;
 
@@ -44,9 +45,21 @@ public class ProductController {
 		
 	}
 	
-	@PostMapping("/editProduct/{id}")
-	public ResponseEntity<?>editProduct(@RequestBody Product product, @PathVariable Integer id){
-		return new ResponseEntity<>(productService.editProduct(product, id), HttpStatus.OK);
-	}
+	
+	  @PostMapping("/editProduct/{id}") public
+	  ResponseEntity<?>editProduct(@RequestBody Product product, @PathVariable
+	  Integer id){ return new ResponseEntity<>(productService.editProduct(product,
+	  id), HttpStatus.OK); }
+	 
+	
+	
+	
+		/*
+		 * @PostMapping("/editProduct/{id}") public ResponseEntity<?>
+		 * editProduct(@RequestBody Product product, @PathVariable Integer id) { try {
+		 * return new ResponseEntity<>(productService.editProduct(product, id),
+		 * HttpStatus.OK); } catch (ProductNotFoundException ex) { return new
+		 * ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND); } }
+		 */
 	
 }

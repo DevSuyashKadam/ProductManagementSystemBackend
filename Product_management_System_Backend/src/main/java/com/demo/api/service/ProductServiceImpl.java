@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.api.exception.ProductNotFoundException;
 import com.demo.api.model.Product;
 import com.demo.api.repository.ProductRepository;
 
@@ -51,15 +52,30 @@ public class ProductServiceImpl implements ProductService{
 		return "Something wrong on server";
 	}
 	
-	public Product editProduct(Product p, Integer id) {
-		
-		Product oldProduct=productrepo.findById(id).get();
-		oldProduct.setProductName(p.getProductName());
-		oldProduct.setDescription(p.getDescription());
-		oldProduct.setPrice(p.getPrice());
-		oldProduct.setStatus(p.getStatus());
-		return productrepo.save(oldProduct);
-		
-	}
+	
+	  public Product editProduct(Product p, Integer id) {
+	  
+	  Product oldProduct=productrepo.findById(id).get();
+	  oldProduct.setProductName(p.getProductName());
+	  oldProduct.setDescription(p.getDescription());
+	  oldProduct.setPrice(p.getPrice()); oldProduct.setStatus(p.getStatus());
+	  return productrepo.save(oldProduct);
+	  
+	  }
+	 
+	
+	
+	
+	
+	
+	
+	/*
+	 * public Product editProduct(Product product, Integer id) { return
+	 * productrepo.findById(id).map(existingProduct -> {
+	 * existingProduct.setProductName(product.getProductName());
+	 * existingProduct.setPrice(product.getPrice()); return
+	 * productrepo.save(existingProduct); }).orElseThrow(() -> new
+	 * ProductNotFoundException("Product with ID " + id + " not found")); }
+	 */
 
 }
